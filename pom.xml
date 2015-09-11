@@ -10,11 +10,11 @@
 
 	<groupId>net.stickycode.bootstrap</groupId>
 	<artifactId>sticky-bootstrap-spring3</artifactId>
-	<version>2.5-SNAPSHOT</version>
+	<version>3.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>sticky-bootstrap-spring3-2</name>
-	<description>Bootstrap support for guice that will scan the given packages and contruct an injector for it</description>
+	<name>sticky-bootstrap-spring3-3</name>
+	<description>Bootstrap support for spring that will scan the given packages and contruct a context for it</description>
 	<inceptionYear>2012</inceptionYear>
 	<url>http://www.StickyCode.net/bootstrap/sticky-bootstrap-spring3/</url>
 
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>net.stickycode.bootstrap</groupId>
 			<artifactId>sticky-bootstrap-tck</artifactId>
-			<version>[1.7,2)</version>
+			<version>[2,3)</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -52,7 +52,7 @@
 		<dependency>
 			<groupId>net.stickycode.bootstrap</groupId>
 			<artifactId>sticky-bootstrap-api</artifactId>
-			<version>[2.7,3)</version>
+			<version>[3,4)</version>
 		</dependency>
 	</dependencies>
 
