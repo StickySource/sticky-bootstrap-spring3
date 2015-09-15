@@ -41,4 +41,9 @@ public class SpringComponentContainer
       }
     }
   }
+
+  @Override
+  public boolean canFind(Class<?> type) {
+    return factory.getBeanNamesForType(type).length > 0;
+  }
 }
