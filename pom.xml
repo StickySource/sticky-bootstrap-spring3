@@ -10,7 +10,7 @@
 
 	<groupId>net.stickycode.bootstrap</groupId>
 	<artifactId>sticky-bootstrap-spring3</artifactId>
-	<version>3.2-SNAPSHOT</version>
+	<version>3.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>sticky-bootstrap-spring3-3</name>
@@ -52,7 +52,7 @@
 		<dependency>
 			<groupId>net.stickycode.bootstrap</groupId>
 			<artifactId>sticky-bootstrap-api</artifactId>
-			<version>[3.1,4)</version>
+			<version>[3.3,4)</version>
 		</dependency>
 	</dependencies>
 
