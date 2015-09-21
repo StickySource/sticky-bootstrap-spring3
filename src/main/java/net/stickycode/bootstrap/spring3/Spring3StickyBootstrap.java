@@ -2,14 +2,17 @@ package net.stickycode.bootstrap.spring3;
 
 import java.util.Collection;
 
+import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
+import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.stereotype.Component;
@@ -33,6 +36,15 @@ public class Spring3StickyBootstrap
 
   public Spring3StickyBootstrap(GenericApplicationContext context) {
     this.context = context;
+
+    AutowiredAnnotationBeanPostProcessor inject = new AutowiredAnnotationBeanPostProcessor();
+    inject.setBeanFactory(context.getDefaultListableBeanFactory());
+    context.getBeanFactory().addBeanPostProcessor(inject);
+
+    CommonAnnotationBeanPostProcessor commonPostProcessor = new CommonAnnotationBeanPostProcessor();
+    commonPostProcessor.setBeanFactory(context.getDefaultListableBeanFactory());
+    context.getBeanFactory().addBeanPostProcessor(commonPostProcessor);
+
     registerType("componentContainer", SpringComponentContainer.class);
   }
 
@@ -62,8 +74,9 @@ public class Spring3StickyBootstrap
   }
 
   private GenericApplicationContext getContext() {
-    if (!context.isActive())
+    if (!context.isActive()) {
       context.refresh();
+    }
 
     return context;
   }
@@ -137,6 +150,11 @@ public class Spring3StickyBootstrap
   public void start() {
     if (canFind(StickySystemStartup.class))
       find(StickySystemStartup.class).start();
+  }
+
+  @Override
+  public void registerProvider(String name, Provider<Object> provider, Class<?> type) {
+    context.getBeanFactory().registerSingleton(name, new FactoryBeanProviderAdapter(provider, type));
   }
 
 }
