@@ -123,8 +123,9 @@ public class Spring3StickyBootstrap
 
   @Override
   public void shutdown() {
-    if (canFind(StickySystemStartup.class))
-      find(StickySystemStartup.class).shutdown();
+    if (context.isRunning())
+      if (canFind(StickySystemStartup.class))
+        find(StickySystemStartup.class).shutdown();
 
     context.close();
   }
