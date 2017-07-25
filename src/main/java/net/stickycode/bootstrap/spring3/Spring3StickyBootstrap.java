@@ -58,6 +58,7 @@ public class Spring3StickyBootstrap
   public StickyBootstrap scan(String... paths) {
     if (paths.length > 0) {
       ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(context, false);
+      scanner.setBeanNameGenerator(new VersionedBeanNameGenerator());
       scanner.setScopeMetadataResolver(new StickyScopeMetadataResolver());
       scanner.addIncludeFilter(new AnnotationTypeFilter(StickyComponent.class));
       scanner.addIncludeFilter(new AnnotationTypeFilter(StickyPlugin.class));

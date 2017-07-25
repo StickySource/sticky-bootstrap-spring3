@@ -53,4 +53,5 @@ public class BeanFactoryPostProcessorTest {
     crank.registerSingleton("bob", new Example(), Example.class);
     crank.inject(this);
   }
+  
 }
